@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+  <head>
+    <title id="pageTitle">Word generator</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="Artur A.">
+
+		<script src="wordgen.js">
+		</script>
+
+	<style>
+		body {font-family: sans-serif}
+		h1, h2 noscript, form {text-align: center}
+		.button {
+ 			 background-color: #555555;
+ 			 border: none;
+ 			 color: white;
+ 			 padding: 5px 10px;
+ 			 text-align: center;
+ 			 text-decoration: none;
+ 			 display: inline-block;
+ 			 border-radius: 4px;
+ 		}
+ 		textarea {
+			width: 80%;
+			border: 2px solid black;
+			border-radius: 4px;
+		}
+		input[type=text] {
+			width: 50px;
+  			border: 2px solid #555555;
+  			border-radius: 4px;
+  			padding: 5px 10px;
+		}
+		p.message {color: red}
+	</style>
+
+  </head>
+
+  <body>
+  <h1>Word generator</h1>
+  
+	<form action="" name="mainForm">
+		<p>Letters: <textarea rows="6" name="inLetters"></textarea></p>
+		<p>Structure: <textarea rows="6" name="inStructure"></textarea></p>
+		<p>Words to generate: <input type="text" name="wordsNum" value="10"></text></p>
+		<p><input type=button class="button" value="Generate words" onClick="generate()"/>
+			<input type=button class="button" value="Try example" onClick="example()"/>
+			<input type=button class="button" value="Reset" onClick="reset()"/></p>
+		<p>Output: <textarea rows="20" name="outWords"></textarea></p>
+		<p id="messageField" class="message"></p>
+	</form>
+
+  </body>
+</html>
