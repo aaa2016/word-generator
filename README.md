@@ -1,6 +1,11 @@
 # Word generator
 
-## Purpose
+## Table of Contents
+1. [Purpose](#s1)
+2. [Features yet to be implemented](#s2)
+3. [Example screenshot](#s3)
+
+## Purpose<a name="s1"></a>
 
 This tool builds random words that are based on an abstract word structure.
 
@@ -22,7 +27,7 @@ Words will then be generated at random, to fit the syllable structure **CV**, eg
 
 Letter frequencies can be increased by repeating letters in the input field.
 
-## Features yet to be implemented
+## Features yet to be implemented<a name="s2"></a>
 
 * Minimum limit of syllables per word
 * Supporting custom syllable structures other than **CV**, eg. **VC** or **CVC**
@@ -33,9 +38,7 @@ Letter frequencies can be increased by repeating letters in the input field.
 * Checks to make sure generated words are unique within the list
 * Different output delimiters, eg. comma or tab
 
-## Screenshots
-
-![Screenshot of tool](https://github.com/aaa2016/word-generator/blob/master/screenshot.png)
+## Example screenshot<a name="s3"></a>
 
 This example attempts to replicate the word structure of the artificial language [Toki Pona](https://en.wikipedia.org/wiki/Toki_Pona):
 
