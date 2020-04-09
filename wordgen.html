@@ -7,12 +7,11 @@
     <meta name="keywords" content="">
     <meta name="author" content="Artur A.">
 
-		<script src="wordgen.js">
-		</script>
+	<script src="wordgen.js"></script>
 
 	<style>
-		body {font-family: sans-serif}
-		h1, h2 noscript, form {text-align: center}
+		body {font-family: sans-serif;}
+		h1, form {text-align: center;}
 		.button {
  			 background-color: #555555;
  			 border: none;
@@ -22,6 +21,9 @@
  			 text-decoration: none;
  			 display: inline-block;
  			 border-radius: 4px;
+ 		}
+ 		.button:hover {
+ 			 background-color: #999999;
  		}
  		textarea {
 			width: 60%;
@@ -34,7 +36,27 @@
   			border-radius: 4px;
   			padding: 5px 10px;
 		}
-		p.message {color: red}
+		p.message {color: #555555;}
+		.label {
+			padding: 0px 5px;
+		}
+		#letter-label, #structure-label {
+			font-weight: bold;
+		}
+		#structure {
+			border: 2px solid #555555;
+  			border-radius: 4px;
+  			padding: 5px 10px;
+		}
+		label, textarea {
+			display:inline-block;
+  			vertical-align:middle;
+
+		}
+		#struct-area {
+			width: 50px;
+		}
+		/* TODO: custom checkbox style */
 	</style>
 
   </head>
@@ -44,24 +66,35 @@
   
 	<form action="" name="mainForm">
 		<p>
-			C: <textarea rows="2" name="inC"></textarea>
+			<span class="label" id="letter-label">C</span>
+			<textarea rows="2" name="inC"></textarea>
 		</p>
 		<p>
-			V: <textarea rows="2" name="inV"></textarea>
+			<span class="label" id="letter-label">V</span>
+			<textarea rows="2" name="inV"></textarea>
 		</p>
 		<p>
-			Words to generate: <input type="text" name="wordsNum" value="20"></text>
-			<!--Minimum syllables: <input type="text" name="minSyl" value="1"></text>-->
-			Maximum syllables: <input type="text" name="maxSyl" value="4"></text>
-			<label for="hyphenate">Hyphenate between syllables: </label>
-			<input type="checkbox" id="hyphenate" checked>
+			<span class="label" id="structure-label">Syllable structure</span>
+			<textarea rows="1" name="struct" id="struct-area" readonly>CV</textarea>
+		</p>
+		<p>
+			<span class="label" id="param-label">Words to generate:</span>
+			<input type="text" name="wordsNum" value="20"></text>
+			<!--<span id="param-label">Minimum syllables: </span>
+			<input type="text" name="minSyl" value="1"></text>-->
+			<span class="label" id="param-label">Maximum syllables:</span>
+			<input type="text" name="maxSyl" value="3"></text>
+			<span class="label" id="param-label">
+				<label for="hyphenate">Hyphenate between syllables:</label>
+			</span>
+			<input type="checkbox" id="hyphenate" class="checkmark">
 		</p>
 		<p>
 			<input type=button class="button" value="Generate words" onClick="generate()"/>
 			<input type=button class="button" value="Try example" onClick="example()"/>
 			<input type=button class="button" value="Reset" onClick="reset()"/>
 		</p>
-		<p>CV output:</p>
+		<div class="label" id="output-label">Output:</div>
 		<p><textarea rows="21" name="outWords"></textarea></p>
 		<p id="messageField" class="message"></p>
 	</form>
