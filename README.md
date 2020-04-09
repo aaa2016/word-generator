@@ -29,4 +29,4 @@ Words will then be generated at random, to fit the syllable structure **CV**, eg
 
 ## Screenshot
 
-![Screenshot of tool](https://github.com/aaa2016/word-generator/blob/master/screenshot.png =500x)
+![Screenshot of tool](https://github.com/aaa2016/word-generator/blob/master/screenshot.png)
