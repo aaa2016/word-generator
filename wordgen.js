@@ -14,94 +14,118 @@
 */
 function generate() {
 		
-	// Clear messages
+	// Clear messages and output
 	document.getElementById("messageField").innerHTML = "";	
+	document.forms["mainForm"].outWords.value = "";
 	
-	// Gather inputs
-	var letters = document.forms["mainForm"].inLetters.value;
-	var struct = document.forms["mainForm"].inStructure.value;
-	//window.alert("Letters:\n"+letters+"\nStructure:\n"+struct);
-	var wordsToGen = document.forms["mainForm"].wordsNum.value;
+	// Gather inputs (should be comma-separated)
+	var inC = document.forms["mainForm"].inC.value;
+	var inV = document.forms["mainForm"].inV.value;
+	// Parse to arrays
+	var arrC = inC.split(",");
+	var arrV = inV.split(",");
+	// Other settings
+	var wordsToGen = document.forms["mainForm"].wordsNum.value; // Number of words
+	var minSyl = 1; // TODO: document.forms["mainForm"].minSyl.value; // Min syllable count
+	var maxSyl = document.forms["mainForm"].maxSyl.value; // Max syllable count
 	
 	// Check inputs are not blank
-	if (letters == "" || struct == "") {
+	if (arrC == "" || arrV == "") {
 	
 		document.getElementById("messageField").innerHTML = 
-			"No letters and/or structure provided";
-			
-	} else if (wordsToGen == NaN || wordsToGen == "") {
+			"No letters provided";
+	
+	// Check numerical settings are numbers and not blank		
+	} else if (isNaN(wordsToGen) || wordsToGen == "" || minSyl == "" || isNaN(minSyl)
+		|| maxSyl == "" || isNaN(maxSyl)) {
 	
 		document.getElementById("messageField").innerHTML = 
-			"Number of words to generate not specified";
+			"Number of words or syllables to generate not specified";
 				
 	} else {
-			
-		parseLetters(letters);
-		parseStructure(struct);
-	
-		// Generate list
-		var output = "";
 		
-		// TODO: actual generation algorithm
-		// TODO: optionally check for word uniqueness
-		for (i=0;i<wordsToGen;i++){
-			output += Math.random()+"\n"; 
-		}
+		// Generate list
+		var wordList = genWords(wordsToGen,minSyl,maxSyl,arrC,arrV);
 		
 		// Output generated list
-		document.forms["mainForm"].outWords.value = output;
+		document.forms["mainForm"].outWords.value = wordList;
 		document.getElementById("messageField").innerHTML = 
-			"Output provided "+wordsToGen+" rows";
+			"Output provided "+wordsToGen+" words";
 	
 	}
 }
+
+/////////////////////////////////
 
 /*
-*	Parses input letter lists
+*	Generation algorithm
 */
-function parseLetters(input) {
+function genWords(quant,minsyl,maxsyl,c,v) {
 
-	//window.alert("Parsing letters:\n"+input);
+	var output = "";
 	
-	for (i=0;i<input.length;i++) {
-		//window.alert("i="+i+" is: "+input[i]);
+	// Sample arrays, if needed
+	//var c = ["p","t","k","b","d","g","f","s","h","v","z","m","n","r","l"];
+	//var v = ["a","i","u","o","e","aa","ii","uu","oo","ee"];
+	
+	// TODO: add custom syllable structure selection
+	
+	// Loop for number of words required
+	for (i=0;i<quant;i++){
+
+		var newWord = "";
+		//console.log("quant no: "+i);
+		
+		// Pick random number of syllables to generate, up to the specified max
+		sylToMake = Math.floor(Math.random() * maxsyl)+1;
+		//console.log("sylToMake: "+sylToMake);
+		
+		//Loop for syllables for a given word
+		for (j=0;j<sylToMake;j++) {
+			// Pick random C and random V from array
+			var randC = c[Math.floor(Math.random() * c.length)];
+			var randV = v[Math.floor(Math.random() * v.length)];
+			newWord += randC+randV; // Appen to word
+			
+			// Hyphenate between syllables if user selects and not after last syllable
+			if (j != sylToMake-1 && document.getElementById("hyphenate").checked) {
+				newWord += "-";
+			}
+		}
+		
+		// TODO: optionally check for word uniqueness
+		
+		output += newWord+"\n"; // Add to output with line breaks after each word
 	}
 	
-	//TODO: proper parsing of letter lists
+	return output;
 	
 }
 
-/*
-*	Parses input structure
-*/
-function parseStructure(input) {
-
-	//window.alert("Parsing structure:\n"+input);
-
-	for (i=0;i<input.length;i++) {
-		//window.alert("i="+i+" is: "+input[i]);
-	}
-	
-	//TODO: proper parsing of structures, including optional letters
-	
-}
+/////////////////////////////////
 
 /*
 *	Provides example inputs
 */
 function example() {
-	document.forms["mainForm"].inLetters.value = "C:ptk,V:aiu";
-	document.forms["mainForm"].inStructure.value = "CV";
+	document.forms["mainForm"].inC.value = 
+		'p,t,k,b,d,g,f,s,h,v,z,q,m,n,r,l,ng,c,x,j,w';
+	document.forms["mainForm"].inV.value = 
+		'a,i,u,o,e,y,aa,ii,uu,oo,ee,yy,ai,au,oi,ou,ei,eu,ui,iu';
+	document.forms["mainForm"].wordsNum.value = "20";
+	document.forms["mainForm"].maxSyl.value = "4"; 
 }
+
+/////////////////////////////////
 
 /*
 *	Resets messages and text areas
 */
 function reset() {
 
-	document.forms["mainForm"].inLetters.value = "";
-	document.forms["mainForm"].inStructure.value = "";
+	document.forms["mainForm"].inC.value = "";
+	document.forms["mainForm"].inV.value = "";
 	document.forms["mainForm"].outWords.value = "";
-	document.getElementById("messageField").innerHTML = "";	
+	document.getElementById("messageField").innerHTML = "";	// TODO: doesn't work
 
 }

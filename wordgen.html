@@ -24,7 +24,7 @@
  			 border-radius: 4px;
  		}
  		textarea {
-			width: 80%;
+			width: 60%;
 			border: 2px solid black;
 			border-radius: 4px;
 		}
@@ -43,13 +43,26 @@
   <h1>Word generator</h1>
   
 	<form action="" name="mainForm">
-		<p>Letters: <textarea rows="6" name="inLetters"></textarea></p>
-		<p>Structure: <textarea rows="6" name="inStructure"></textarea></p>
-		<p>Words to generate: <input type="text" name="wordsNum" value="10"></text></p>
-		<p><input type=button class="button" value="Generate words" onClick="generate()"/>
+		<p>
+			C: <textarea rows="2" name="inC"></textarea>
+		</p>
+		<p>
+			V: <textarea rows="2" name="inV"></textarea>
+		</p>
+		<p>
+			Words to generate: <input type="text" name="wordsNum" value="20"></text>
+			<!--Minimum syllables: <input type="text" name="minSyl" value="1"></text>-->
+			Maximum syllables: <input type="text" name="maxSyl" value="4"></text>
+			<label for="hyphenate">Hyphenate between syllables: </label>
+			<input type="checkbox" id="hyphenate" checked>
+		</p>
+		<p>
+			<input type=button class="button" value="Generate words" onClick="generate()"/>
 			<input type=button class="button" value="Try example" onClick="example()"/>
-			<input type=button class="button" value="Reset" onClick="reset()"/></p>
-		<p>Output: <textarea rows="20" name="outWords"></textarea></p>
+			<input type=button class="button" value="Reset" onClick="reset()"/>
+		</p>
+		<p>CV output:</p>
+		<p><textarea rows="21" name="outWords"></textarea></p>
 		<p id="messageField" class="message"></p>
 	</form>
 
