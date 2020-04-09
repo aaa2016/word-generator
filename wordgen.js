@@ -21,6 +21,9 @@ function generate() {
 	// Gather inputs (should be comma-separated)
 	var inC = document.forms["mainForm"].inC.value;
 	var inV = document.forms["mainForm"].inV.value;
+	
+	// TODO: trim whitespace
+	
 	// Parse to arrays
 	var arrC = inC.split(",");
 	var arrV = inV.split(",");
@@ -80,12 +83,12 @@ function genWords(quant,minsyl,maxsyl,c,v) {
 		sylToMake = Math.floor(Math.random() * maxsyl)+1;
 		//console.log("sylToMake: "+sylToMake);
 		
-		//Loop for syllables for a given word
+		// Loop for syllables for a given word
 		for (j=0;j<sylToMake;j++) {
 			// Pick random C and random V from array
 			var randC = c[Math.floor(Math.random() * c.length)];
 			var randV = v[Math.floor(Math.random() * v.length)];
-			newWord += randC+randV; // Appen to word
+			newWord += randC+randV; // Append new CV syllable to word
 			
 			// Hyphenate between syllables if user selects and not after last syllable
 			if (j != sylToMake-1 && document.getElementById("hyphenate").checked) {
@@ -95,7 +98,9 @@ function genWords(quant,minsyl,maxsyl,c,v) {
 		
 		// TODO: optionally check for word uniqueness
 		
-		output += newWord+"\n"; // Add to output with line breaks after each word
+		// TODO: give user option to select different output delimiters
+		
+		output += newWord+"\n"; // Add to output with delimiter after each word
 	}
 	
 	return output;
