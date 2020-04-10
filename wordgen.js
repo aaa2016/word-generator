@@ -155,8 +155,8 @@ function genWords(struct,quant,minsyl,maxsyl,c,v) {
 */
 function example() {
 	reset();
-	document.forms["mainForm"].inC.value = 'p,t,k,f,s,h,m,n,r,l';
-	document.forms["mainForm"].inV.value = 'a,i,u,o,e,y,ai,oi,ui';
+	document.forms["mainForm"].inC.value = 'p,t,k,s,m,n,l,j,w';
+	document.forms["mainForm"].inV.value = 'a,i,u,o,e,an,in,un,on,en,am,im,um,om,em';
 	// More extensive example
 		//document.forms["mainForm"].inC.value = 
 		//	'p,t,k,b,d,g,f,s,h,v,z,q,m,n,r,l,ng,c,x,j,w';
