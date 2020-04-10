@@ -1,15 +1,4 @@
 /*
-*	TEMPLATE
-*/
-//function () {
-
-	
-
-//}
-
-/////////////////////////////////
-
-/*
 *	Main function to generate words
 */
 function generate() {
@@ -167,12 +156,12 @@ function genWords(struct,quant,minsyl,maxsyl,c,v) {
 function example() {
 	reset();
 	document.forms["mainForm"].inC.value = 'p,t,k,f,s,h,m,n,r,l';
-	document.forms["mainForm"].inV.value = 'a,i,u,o,e,y';
+	document.forms["mainForm"].inV.value = 'a,i,u,o,e,y,ai,oi,ui';
 	// More extensive example
-	//document.forms["mainForm"].inC.value = 
-	//	'p,t,k,b,d,g,f,s,h,v,z,q,m,n,r,l,ng,c,x,j,w';
-	//document.forms["mainForm"].inV.value = 
-	//	'a,i,u,o,e,y,aa,ii,uu,oo,ee,yy,ai,au,oi,ou,ei,eu,ui,iu';
+		//document.forms["mainForm"].inC.value = 
+		//	'p,t,k,b,d,g,f,s,h,v,z,q,m,n,r,l,ng,c,x,j,w';
+		//document.forms["mainForm"].inV.value = 
+		//	'a,i,u,o,e,y,aa,ii,uu,oo,ee,yy,ai,au,oi,ou,ei,eu,ui,iu';
 	document.forms["mainForm"].wordsNum.value = "15";
 	document.forms["mainForm"].minSyl.value = "1"; 
 	document.forms["mainForm"].maxSyl.value = "3"; 

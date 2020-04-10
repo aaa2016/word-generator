@@ -1,17 +1,17 @@
 # Word generator
 
 ## Table of Contents
-1. [Purpose](#s1)
-2. [Features yet to be implemented](#s2)
-3. [Example screenshot](#s3)
+1. [Purpose](#purpose)
+2. [Features yet to be implemented](#features)
+3. [Example screenshot](#screenshot)
 
-## Purpose<a name="s1"></a>
+## Purpose<a name="purpose"></a>
 
 This tool builds random words that are based on an abstract word structure.
 
-The user specifies comma-separated lists of letters to fit in each letter 'slot', eg:
+The user specifies comma-separated lists of letters (also allowing digraphs, trigraphs etc.) to fit in each letter 'slot', eg:
 * C: p,t,k,s,n,h,m,n,l
-* V: a,e,i,o,u
+* V: a,e,i,o,u,ai,oi
 
 The user also specifies:
 * a syllable structure composed of any combination of **C**s and **V**s
@@ -21,7 +21,7 @@ The user also specifies:
 * what delimiter to use for the output list: new line, comma, or tab
 
 Words will then be generated at random, to fit the chosen syllable structure, eg.:
-* _nakupo_
+* _nakupoi_
 * _puni_
 * _losi_
 * _tupimeso_
@@ -34,14 +34,14 @@ Any letters other than **C** or **V** in the structure will be used as is, eg.: 
 * pin
 * non
 
-## Features yet to be implemented<a name="s2"></a>
+## Features yet to be implemented<a name="features"></a>
 
 * Supporting optional letters, eg. **(C)V(C)** or **CV(V)**
 * Supporting other custom letter categories, eg. **CVL** where **L**: w,r,l,j
 * Supporting phonotactic constraints (ie. combinations not allowed)
 * Checks to make sure generated words are unique within the list
 
-## Example screenshot<a name="s3"></a>
+## Example screenshot<a name="screenshot"></a>
 
 This example attempts to replicate the word structure of the artificial language [Toki Pona](https://en.wikipedia.org/wiki/Toki_Pona):
 
