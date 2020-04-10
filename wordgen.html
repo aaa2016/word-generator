@@ -56,7 +56,7 @@
 		#struct-area {
 			width: 100px;
 		}
-		/* TODO: custom checkbox style */
+		/* TODO: custom checkbox and radio button style */
 	</style>
 
   </head>
@@ -75,11 +75,11 @@
 		</p>
 		<p>
 			<span class="label" id="structure-label">Syllable structure</span>
-			<textarea rows="1" name="struct" id="struct-area">CV</textarea>
+			<textarea rows="1" name="struct" id="struct-area"></textarea>
 		</p>
 		<p>
 			<span class="label" id="param-label">Words to generate:</span>
-			<input type="text" name="wordsNum" value="20"></text>
+			<input type="text" name="wordsNum" value="15"></text>
 			<span id="param-label">Minimum syllables: </span>
 			<input type="text" name="minSyl" value="1"></text>
 			<span class="label" id="param-label">Maximum syllables:</span>
@@ -88,6 +88,15 @@
 				<label for="hyphenate">Hyphenate between syllables:</label>
 			</span>
 			<input type="checkbox" id="hyphenate" class="checkmark">
+		</p>
+		<p>
+			Output delimiter: 
+			<input type="radio" id="newline" name="delimiter" value="newline" checked>
+			<label for="newline">New line</label>
+			<input type="radio" id="comma" name="delimiter" value="comma">
+			<label for="comma">Comma</label>
+			<input type="radio" id="tab" name="delimiter" value="tab">
+			<label for="tab">Tab</label> 
 		</p>
 		<p>
 			<input type=button class="button" value="Generate words" onClick="generate()"/>

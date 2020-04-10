@@ -18,6 +18,7 @@ The user also specifies:
 * number of words to generate
 * minimum and maximum number of syllables per word
 * whether the syllable boundaries should be delineated with a hyphen
+* what delimiter to use for the output list: new line, comma, or tab
 
 Words will then be generated at random, to fit the chosen syllable structure, eg.:
 * _nakupo_
@@ -28,14 +29,17 @@ Words will then be generated at random, to fit the chosen syllable structure, eg
 
 Letter frequencies can be adjusted by repeating letters in the input field.
 
+Any letters other than **C** or **V** in the structure will be used as is, eg.: **CVn** will generate something like:
+* tan
+* pin
+* non
+
 ## Features yet to be implemented<a name="s2"></a>
 
 * Supporting optional letters, eg. **(C)V(C)** or **CV(V)**
-* Supporting other custom letter categories, eg. **CVL**
-* Supporting exact letters, eg. **CVa** (all end in 'a') or **(n)V** (optional 'n')
+* Supporting other custom letter categories, eg. **CVL** where **L**: w,r,l,j
 * Supporting phonotactic constraints (ie. combinations not allowed)
 * Checks to make sure generated words are unique within the list
-* Different output delimiters, eg. comma or tab
 
 ## Example screenshot<a name="s3"></a>
 
