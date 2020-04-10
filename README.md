@@ -14,23 +14,22 @@ The user specifies comma-separated lists of letters to fit in each letter 'slot'
 * V: a,e,i,o,u
 
 The user also specifies:
+* a syllable structure composed of any combination of **C**s and **V**s
 * number of words to generate
-* maximum number of syllables per word
-* whether they want the syllable boundaries delineated with a hyphen
+* minimum and maximum number of syllables per word
+* whether the syllable boundaries should be delineated with a hyphen
 
-Words will then be generated at random, to fit the syllable structure **CV**, eg.:
+Words will then be generated at random, to fit the chosen syllable structure, eg.:
 * _nakupo_
 * _puni_
 * _losi_
 * _tupimeso_
 * _ki_
 
-Letter frequencies can be increased by repeating letters in the input field.
+Letter frequencies can be adjusted by repeating letters in the input field.
 
 ## Features yet to be implemented<a name="s2"></a>
 
-* Minimum limit of syllables per word
-* Supporting custom syllable structures other than **CV**, eg. **VC** or **CVC**
 * Supporting optional letters, eg. **(C)V(C)** or **CV(V)**
 * Supporting other custom letter categories, eg. **CVL**
 * Supporting exact letters, eg. **CVa** (all end in 'a') or **(n)V** (optional 'n')
