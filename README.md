@@ -10,8 +10,8 @@
 This tool builds random words that are based on an abstract word structure.
 
 The user specifies comma-separated lists of letters (also allowing digraphs, trigraphs etc.) to fit in each letter 'slot', eg:
-* C: p,t,k,s,n,h,m,n,l
-* V: a,e,i,o,u,ai,oi
+* **C**: p,t,k,s,n,h,m,n,l
+* **V**: a,e,i,o,u,ai,oi
 
 The user also specifies:
 * a syllable structure composed of any combination of **C**s and **V**s
@@ -30,9 +30,9 @@ Words will then be generated at random, to fit the chosen syllable structure, eg
 Letter frequencies can be adjusted by repeating letters in the input field.
 
 Any letters other than **C** or **V** in the structure will be used as is, eg.: **CVn** will generate something like:
-* tan
-* pin
-* non
+* _tan_
+* _pin_
+* _non_
 
 ## Features yet to be implemented<a name="features"></a>
 
