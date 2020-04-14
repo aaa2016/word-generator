@@ -10,6 +10,9 @@ function generate() {
 	// Gather inputs (should be comma-separated)
 	var inC = document.forms["mainForm"].inC.value;
 	var inV = document.forms["mainForm"].inV.value;
+	var inI = document.forms["mainForm"].inI.value;
+	var inM = document.forms["mainForm"].inM.value;
+	var inF = document.forms["mainForm"].inF.value;
 	var structure = document.forms["mainForm"].struct.value;
 	
 	// TODO: trim whitespace in inputs
@@ -17,6 +20,9 @@ function generate() {
 	// Parse to arrays
 	var arrC = inC.split(",");
 	var arrV = inV.split(",");
+	var arrI = inI.split(",");
+	var arrM = inM.split(",");
+	var arrF = inF.split(",");
 	// Other settings:
 	// Number of words
 		var wordsToGen = parseInt(document.forms["mainForm"].wordsNum.value);
@@ -24,10 +30,11 @@ function generate() {
 	var maxSyl = document.forms["mainForm"].maxSyl.value; // Max syllable count
 	
 	// Check inputs are not blank
-	if (arrC == "" || arrV == "" || structure == "") {
+	// TODO: check for empty letters if used in structure
+	if (structure == "") {
 	
 		document.getElementById("messageField").innerHTML = 
-			"No letters and/or syllable structure provided";
+			"No syllable structure provided";
 	
 	// Check numerical settings are numbers and not blank		
 	} else if (isNaN(wordsToGen) || wordsToGen == "" || minSyl == "" || isNaN(minSyl)
@@ -39,7 +46,8 @@ function generate() {
 	} else {
 		
 		// Generate list by calling algorithm function
-		var wordList = genWords(structure,wordsToGen,minSyl,maxSyl,arrC,arrV);
+		var wordList = 
+			genWords(structure,wordsToGen,minSyl,maxSyl,arrC,arrV,arrI,arrM,arrF);
 		
 		// Output generated list
 		if (wordList != "") {
@@ -69,7 +77,7 @@ function generate() {
 /*
 *	Generation algorithm
 */
-function genWords(struct,quant,minsyl,maxsyl,c,v) {
+function genWords(struct,quant,minsyl,maxsyl,c,v,i,m,f) {
 
 	var output = "";
 	
@@ -79,11 +87,12 @@ function genWords(struct,quant,minsyl,maxsyl,c,v) {
 	//var c = ["p","t","k","b","d","g","f","s","h","v","z","m","n","r","l"];
 	//var v = ["a","i","u","o","e","aa","ii","uu","oo","ee"];
 	
-	// TODO: add custom syllable structure selection beyond C and V
-	// TODO: optional letters
+	// TODO: add custom syllable structure selection using letters provided by the user
+	//			rather than just the C, V, I, M, F
+	// TODO: optional letters (using bracket notation?)
 	
 	// Loop for number of words required
-	for (i=0;i<quant;i++){
+	for (x=0;x<quant;x++){
 
 		var newWord = "";
 		//console.log("quant no: "+i);
@@ -112,6 +121,15 @@ function genWords(struct,quant,minsyl,maxsyl,c,v) {
 					case "V": // Pick random V from array
 						rand = v[Math.floor(Math.random() * v.length)];
 						break;
+					case "I": // Pick random V from array
+						rand = i[Math.floor(Math.random() * i.length)];
+						break;
+					case "M": // Pick random V from array
+						rand = m[Math.floor(Math.random() * m.length)];
+						break;
+					case "F": // Pick random V from array
+						rand = f[Math.floor(Math.random() * f.length)];
+						break;
 					default: // Otherwise use whatever letter the user provides
 						rand = struct[k];
 						break;
@@ -131,7 +149,7 @@ function genWords(struct,quant,minsyl,maxsyl,c,v) {
 		// TODO: optionally check for word uniqueness
 		
 		// Add to output with delimiter after each word, unless after last word
-		if (i<(quant-1)) {
+		if (x<(quant-1)) {
 			if (document.forms["mainForm"].delimiter.value == "newline") {
 				output += newWord+"\n";
 			} else if (document.forms["mainForm"].delimiter.value == "comma") {
@@ -142,7 +160,7 @@ function genWords(struct,quant,minsyl,maxsyl,c,v) {
 		} else {
 			output += newWord
 		}
-	} // i loop
+	} // x loop (used to be i loop until 'i' was used for the category 'I')
 	
 	return output;
 	
@@ -157,6 +175,9 @@ function example() {
 	reset();
 	document.forms["mainForm"].inC.value = 'p,t,k,s,m,n,l,j,w';
 	document.forms["mainForm"].inV.value = 'a,i,u,o,e,an,in,un,on,en,am,im,um,om,em';
+	document.forms["mainForm"].inI.value = '';
+	document.forms["mainForm"].inM.value = '';
+	document.forms["mainForm"].inF.value = '';
 	// More extensive example
 		//document.forms["mainForm"].inC.value = 
 		//	'p,t,k,b,d,g,f,s,h,v,z,q,m,n,r,l,ng,c,x,j,w';
@@ -177,6 +198,9 @@ function reset() {
 
 	document.forms["mainForm"].inC.value = "";
 	document.forms["mainForm"].inV.value = "";
+	document.forms["mainForm"].inI.value = "";
+	document.forms["mainForm"].inM.value = "";
+	document.forms["mainForm"].inF.value = "";
 	document.forms["mainForm"].outWords.value = "";
 	document.getElementById("outWords").rows = 5; // TODO: doesn't work
 	document.getElementById("messageField").innerHTML = "";	// TODO: doesn't work

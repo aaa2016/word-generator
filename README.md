@@ -14,7 +14,7 @@ The user specifies comma-separated lists of letters (also allowing digraphs, tri
 * **V**: a,e,i,o,u,ai,oi
 
 The user also specifies:
-* a syllable structure composed of any combination of **C**s and **V**s
+* a syllable structure composed of any combination of the letter categories, eg. in this case, **C**s and **V**s
 * number of words to generate
 * minimum and maximum number of syllables per word
 * whether the syllable boundaries should be delineated with a hyphen
@@ -34,10 +34,11 @@ Any letters other than **C** or **V** in the structure will be used as is, eg.: 
 * _pin_
 * _non_
 
+The categories **I**, **M**, and **F** are also available to use. They are particularly useful for building words with custom initial, medial, or final letters. You can simulate multi-syllable words with a structure like **IVMVF**, and by setting max syllables to 1.
+
 ## Features yet to be implemented<a name="features"></a>
 
 * Supporting optional letters, eg. **(C)V(C)** or **CV(V)**
-* Supporting other custom letter categories, eg. **CVL** where **L**: w,r,l,j
 * Supporting phonotactic constraints (ie. combinations not allowed)
 * Checks to make sure generated words are unique within the list
 

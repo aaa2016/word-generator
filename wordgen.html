@@ -39,6 +39,9 @@
   			border-radius: 4px;
   			padding: 5px 10px;
 		}
+		.letterstextarea {
+			width: 80%;
+		}
 		p.message {color: #555555;}
 		.label {
 			padding: 0px 5px;
@@ -72,22 +75,47 @@
   			padding: 0px 5px 0px 5px;
 		}
 		/* TODO: custom checkbox and radio button style */
+		.halfcol {
+			float: left;
+  			width: 50%;
+		}
+		.doublecolrow:after { /* Clear floats after the columns */
+			content: "";
+  			display: table;
+  			clear: both;
+		}
 	</style>
 
   </head>
 
   <body>
   <h1>Word generator</h1>
-  
 	<form action="" name="mainForm">
-		<p>
+		<span class="label" id="letter-label">
+			Input letters lists, separated by commas
+		</span>
+		<div class="doublecolrow">
+		<div class="halfcol"><p>
 			<span class="label" id="letter-label">C</span>
-			<textarea rows="2" name="inC"></textarea>
+			<textarea rows="2" class="letterstextarea" name="inC"></textarea>
 		</p>
 		<p>
 			<span class="label" id="letter-label">V</span>
-			<textarea rows="2" name="inV"></textarea>
+			<textarea rows="2" class="letterstextarea" name="inV"></textarea>
+		</p></div>
+		<div class="halfcol"><p>
+			<span class="label" id="letter-label">I</span>
+			<textarea rows="2" class="letterstextarea" name="inI"></textarea>
 		</p>
+		<p>
+			<span class="label" id="letter-label">M</span>
+			<textarea rows="2" class="letterstextarea" name="inM"></textarea>
+		</p>
+		<p>
+			<span class="label" id="letter-label">F</span>
+			<textarea rows="2" class="letterstextarea" name="inF"></textarea>
+		</p></div>
+		</div>
 		<p>
 			<span class="label" id="structure-label">Syllable structure</span>
 			<textarea rows="1" name="struct" id="struct-area"></textarea>
