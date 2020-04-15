@@ -91,6 +91,9 @@ function genWords(struct,quant,minsyl,maxsyl,c,v,i,m,f) {
 	//			rather than just the C, V, I, M, F
 	// TODO: optional letters (using bracket notation?)
 	
+	// Initiate counter for infinite loop protection during duplicate checking
+	var infLoopCounter = 0;
+	
 	// Loop for number of words required
 	for (x=0;x<quant;x++){
 
@@ -146,20 +149,60 @@ function genWords(struct,quant,minsyl,maxsyl,c,v,i,m,f) {
 		} // j loop
 		
 		// TODO: check against list of forbidden clusters
-		// TODO: optionally check for word uniqueness
 		
-		// Add to output with delimiter after each word, unless after last word
-		if (x<(quant-1)) {
-			if (document.forms["mainForm"].delimiter.value == "newline") {
-				output += newWord+"\n";
-			} else if (document.forms["mainForm"].delimiter.value == "comma") {
-				output += newWord+",";
-			} else if (document.forms["mainForm"].delimiter.value == "tab") {
-				output += newWord+"\t";
+		// TODO: the nested conditionals below include repetition
+		// Check for word uniqueness, if user opts in
+		if (document.getElementById("noduplicates").checked) {
+			//console.log("No duplicates allowed");
+			// Check if generated word is already in output
+			// TODO: improve word boundary detection (currently not foolproof)
+			if (output.includes("\n"+newWord)||output.includes("\n"+newWord)||
+				output.includes("\t"+newWord)) { 
+				//console.log("Duplicate word found: "+newWord+" in "+output);
+				// If duplicate found, do not add to output and run loop again
+				// With small letter lists and many words to generate, this could
+				//		lead to an infinite loop - increment counter to track this
+				infLoopCounter++;
+				// Check if high number of duplicates found
+				if (infLoopCounter<10000) {
+					x--;
+				} else {
+					// Return no output (will lead to error message)
+					//console.log("infLoopCounter: "+infLoopCounter);
+					return "";
+				}
+			} else {
+				console.log("No duplicates found");
+				// Add to output with delimiter after each word, unless after last word
+				if (x<(quant-1)) {
+					if (document.forms["mainForm"].delimiter.value == "newline") {
+						output += newWord+"\n";
+					} else if (document.forms["mainForm"].delimiter.value == "comma") {
+						output += newWord+",";
+					} else if (document.forms["mainForm"].delimiter.value == "tab") {
+						output += newWord+"\t";
+					}
+				} else {
+					output += newWord
+				}
 			}
 		} else {
-			output += newWord
+			// If user allows duplicates, add to output without further checks
+			//console.log("Duplicates allowed");
+			// Add to output with delimiter after each word, unless after last word
+			if (x<(quant-1)) {
+				if (document.forms["mainForm"].delimiter.value == "newline") {
+					output += newWord+"\n";
+				} else if (document.forms["mainForm"].delimiter.value == "comma") {
+					output += newWord+",";
+				} else if (document.forms["mainForm"].delimiter.value == "tab") {
+					output += newWord+"\t";
+				}
+			} else {
+				output += newWord
+			}
 		}
+
 	} // x loop (used to be i loop until 'i' was used for the category 'I')
 	
 	return output;
@@ -171,22 +214,33 @@ function genWords(struct,quant,minsyl,maxsyl,c,v,i,m,f) {
 /*
 *	Provides example inputs
 */
-function example() {
+function example(lang) {
 	reset();
-	document.forms["mainForm"].inC.value = 'p,t,k,s,m,n,l,j,w';
-	document.forms["mainForm"].inV.value = 'a,i,u,o,e,an,in,un,on,en,am,im,um,om,em';
-	document.forms["mainForm"].inI.value = '';
-	document.forms["mainForm"].inM.value = '';
-	document.forms["mainForm"].inF.value = '';
-	// More extensive example
-		//document.forms["mainForm"].inC.value = 
-		//	'p,t,k,b,d,g,f,s,h,v,z,q,m,n,r,l,ng,c,x,j,w';
-		//document.forms["mainForm"].inV.value = 
-		//	'a,i,u,o,e,y,aa,ii,uu,oo,ee,yy,ai,au,oi,ou,ei,eu,ui,iu';
 	document.forms["mainForm"].wordsNum.value = "15";
 	document.forms["mainForm"].minSyl.value = "1"; 
 	document.forms["mainForm"].maxSyl.value = "3"; 
-	document.forms["mainForm"].struct.value = "CV"; 
+	console.log("Example lang chosen: "+lang);
+	switch (lang) {
+		case "jp":
+			document.forms["mainForm"].inC.value = 'k,s,t,n,h,w,r,y,';
+			document.forms["mainForm"].inV.value = 'a,i,u,o,e';
+			document.forms["mainForm"].inI.value = '';
+			document.forms["mainForm"].inM.value = '';
+			document.forms["mainForm"].inF.value = 'n,';
+			document.forms["mainForm"].struct.value = "CVF"; 
+			break;
+		case "tokipona":
+			document.forms["mainForm"].inC.value = 'p,t,k,s,m,n,l,j,w,';
+			document.forms["mainForm"].inV.value = 'a,i,u,o,e';
+			document.forms["mainForm"].inI.value = '';
+			document.forms["mainForm"].inM.value = '';
+			document.forms["mainForm"].inF.value = 'n,m,';
+			document.forms["mainForm"].struct.value = "CVF"; 
+			break;
+		default:
+			break;
+	}
+	generate();
 }
 
 /////////////////////////////////

@@ -19,6 +19,9 @@ The user also specifies:
 * minimum and maximum number of syllables per word
 * whether the syllable boundaries should be delineated with a hyphen
 * what delimiter to use for the output list: new line, comma, or tab
+* whether to make sure generated words are unique within the list (not repeated)
+
+To run the generator, click **Generate words**.
 
 Words will then be generated at random, to fit the chosen syllable structure, eg.:
 * _nakupoi_
@@ -27,23 +30,27 @@ Words will then be generated at random, to fit the chosen syllable structure, eg
 * _tupimeso_
 * _ki_
 
-Letter frequencies can be adjusted by repeating letters in the input field.
-
 Any letters other than **C** or **V** in the structure will be used as is, eg.: **CVn** will generate something like:
 * _tan_
 * _pin_
 * _non_
 
-The categories **I**, **M**, and **F** are also available to use. They are particularly useful for building words with custom initial, medial, or final letters. You can simulate multi-syllable words with a structure like **IVMVF**, and by setting max syllables to 1.
+The categories **I**, **M**, and **F** are also available to use. They are particularly useful for building words with custom initial, medial, or final letters. You can simulate multi-syllable words with a structure like **IVMVF**, and by setting maximum syllables to 1.
+
+Optional letters can be simulated by adding extra commas to the letter lists (not followed by a letter), eg. **C**: p,t,k,s,n,h,m,n,l,
+
+Variable Letter frequencies can be adjusted by repeating letters in the input field, eg. **V**: a,a,a,e,e,i.
 
 ## Features yet to be implemented<a name="features"></a>
 
-* Supporting optional letters, eg. **(C)V(C)** or **CV(V)**
+* Supporting optional letters, eg. **(C)V(C)** or **CV(V)**, or supporting multiple syllable structures
 * Supporting phonotactic constraints (ie. combinations not allowed)
-* Checks to make sure generated words are unique within the list
+* Automated adjustment of how often each letter from a list is used (rather than all equal frequency)
+* Automated adjustment of how often numbers of syllables occur (eg. 1 more often than 2 or 3)
+* Sound change applicator on words after they hae been generated
 
-## Example screenshot<a name="screenshot"></a>
+## Examples<a name="screenshot"></a>
 
-This example attempts to replicate the word structure of the artificial language [Toki Pona](https://en.wikipedia.org/wiki/Toki_Pona):
+By using the **Try example** buttons, you can see the word generator attempting to replicate the word structure of either Japanese or the artificial language [Toki Pona](https://en.wikipedia.org/wiki/Toki_Pona), as shown below.
 
 ![Screenshot of tool](https://github.com/aaa2016/word-generator/blob/master/example.png)
