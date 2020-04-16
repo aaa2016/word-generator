@@ -41,6 +41,8 @@ The categories **I**, **M**, and **F** are also available to use. They are parti
 
 <a name="frequencies"></a>Variable letter frequencies can be adjusted by repeating letters in the input field, eg. **V**: a,a,a,e,e,i.
 
+Try the related [phoneme invetory generator](https://github.com/aaa2016/phoneme-inventory-generator/) to generate sample phoneme lists.
+
 ## Features yet to be implemented<a name="features"></a>
 
 * Supporting optional letters, eg. **(C)V(C)** or **CV(V)**, or supporting multiple syllable structures (however, note the [workaround](#optionals) above)

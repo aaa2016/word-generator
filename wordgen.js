@@ -260,3 +260,5 @@ function reset() {
 	document.getElementById("messageField").innerHTML = "";	// TODO: doesn't work
 
 }
+
+/////////////////////////////////
