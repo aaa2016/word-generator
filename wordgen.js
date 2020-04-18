@@ -143,8 +143,15 @@ function genWords(struct,quant,minsyl,maxsyl,c,v,i,m,f) {
 			newWord += newSyl; // Append new syllable to word
 			
 			// Hyphenate between syllables if user selects and not after last syllable
+			// Choose between hyphen or custom delimiter
 			if (j != sylToMake-1 && document.getElementById("hyphenate").checked) {
-				newWord += "-";
+				if (document.forms["mainForm"].sylDelimiter.value == "hyphen") {
+					newWord += "-";
+				} else if (document.forms["mainForm"].sylDelimiter.value == "custom") {
+					var customSylDelim = 
+						document.forms["mainForm"].customSylDelimiter.value;
+					newWord += customSylDelim;
+				}	
 			}
 		} // j loop
 		
@@ -181,6 +188,9 @@ function genWords(struct,quant,minsyl,maxsyl,c,v,i,m,f) {
 						output += newWord+",";
 					} else if (document.forms["mainForm"].delimiter.value == "tab") {
 						output += newWord+"\t";
+					} else if (document.forms["mainForm"].delimiter.value == "custom") {
+						var customDelim = document.forms["mainForm"].customDelimiter.value;
+						output += newWord+customDelim;
 					}
 				} else {
 					output += newWord
@@ -197,6 +207,9 @@ function genWords(struct,quant,minsyl,maxsyl,c,v,i,m,f) {
 					output += newWord+",";
 				} else if (document.forms["mainForm"].delimiter.value == "tab") {
 					output += newWord+"\t";
+				} else if (document.forms["mainForm"].delimiter.value == "custom") {
+					var customDelim = document.forms["mainForm"].customDelimiter.value;
+					output += newWord+customDelim;
 				}
 			} else {
 				output += newWord

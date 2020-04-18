@@ -17,8 +17,8 @@ The user also specifies:
 * a syllable structure composed of any combination of the letter categories, eg. in this case, **C**s and **V**s
 * number of words to generate
 * minimum and maximum number of syllables per word
-* whether the syllable boundaries should be delineated with a hyphen
-* what delimiter to use for the output list: new line, comma, or tab
+* whether the syllable boundaries should be delineated, and whether with a hyphen, or a user-provided option
+* what delimiter to use for the output list: new line, comma, tab, or a user-provided option
 * whether to make sure generated words are unique within the list (not repeated)
 
 To run the generator, click **Generate words**.

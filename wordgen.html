@@ -95,6 +95,7 @@
 		<span class="label" id="letter-label">
 			Input letters lists, separated by commas
 		</span>
+		<!--Double column area containing letter lists-->
 		<div class="doublecolrow">
 		<div class="halfcol"><p>
 			<span class="label" id="letter-label">C</span>
@@ -121,7 +122,9 @@
 			<span class="label" id="structure-label">Syllable structure</span>
 			<textarea rows="1" name="struct" id="struct-area"></textarea>
 		</p>
+		<!--Main settings pane-->
 		<div class="settings-pane">
+			<!--Numerical parameters-->
 			<p>
 				<span class="label" id="param-label">Words to generate:</span>
 				<input type="text" name="wordsNum" value="15"></text>
@@ -136,6 +139,7 @@
 			</p>
 			<p>
 				Output delimiter: 
+				<!--Choice of word delineator-->
 				<span class="nowrap">
 					<input type="radio" id="newline" name="delimiter" value="newline" 
 						checked>
@@ -143,15 +147,30 @@
 					<input type="radio" id="comma" name="delimiter" value="comma">
 					<label for="comma">Comma</label>
 					<input type="radio" id="tab" name="delimiter" value="tab">
-					<label for="tab">Tab</label> 
+					<label for="tab">Tab</label>
+					<input type="radio" id="custom" name="delimiter" value="custom">
+					<!--Custom word delimiter-->
+					<label for="tab">Custom:</label>
+						<input type="text" name="customDelimiter"></text>
 				</span>
 				&bull;
+				<!--Option to delineate syllables-->
 				<span class="nowrap">
 					<span class="label" id="param-label">
-						<label for="hyphenate">Hyphenate between syllables:</label>
+						<label for="hyphenate">Delineate syllables:</label>
 					</span>
 					<input type="checkbox" id="hyphenate" class="checkmark">
+				using:
+					<!--Custom syllable delineator-->
+					<input type="radio" id="hyphen" name="sylDelimiter" value="hyphen" 
+						checked>
+					<label for="newline">Hyphen</label>
+					<input type="radio" id="custom" name="sylDelimiter" value="custom">
+					<label for="sylDelimiter">Custom:</label>
+						<input type="text" name="customSylDelimiter"></text>
 				</span>
+				&bull;
+				<!--Option to exclude duplicates-->
 				<span class="nowrap">
 					<span class="label" id="param-label">
 						<label for="hyphenate">Exclude duplicates:</label>
@@ -160,7 +179,7 @@
 				</span>
 			</p>
 		</div>
-		<p>
+		<p><!--Action buttons-->
 			<input type=button class="button" value="Generate words" 
 				onClick="generate()"/>
 			<input type=button class="button" value="Try example (Toki Pona)" 
@@ -171,10 +190,11 @@
 			&bull;
 			<a href="https://github.com/aaa2016/word-generator" target="_blank">Help</a>
 		</p>
-		<p>
+		<p><!--Output area-->
 			<span class="label" id="output-label">Output</span>
 			<textarea rows="5" name="outWords" id="outWords"></textarea>
 		</p>
+		<!--Message field-->
 		<p id="messageField" class="message"></p>
 	</form>
 
