@@ -91,6 +91,13 @@ function genWords(struct,quant,minsyl,maxsyl,c,v,i,m,f) {
 	//			rather than just the C, V, I, M, F
 	// TODO: optional letters (using bracket notation?)
 	
+	// Gather list of forbidden clusters
+	var disallowCombs = document.forms["mainForm"].restrictedLetters.value;
+	var arrDisallow = [];
+	if (disallowCombs != "") {
+		arrDisallow = disallowCombs.split(",");
+	}
+	
 	// Initiate counter for infinite loop protection during duplicate checking
 	var infLoopCounter = 0;
 	
@@ -99,6 +106,9 @@ function genWords(struct,quant,minsyl,maxsyl,c,v,i,m,f) {
 
 		var newWord = "";
 		//console.log("quant no: "+i);
+	
+		// Flag for words containing forbidden clusters
+		var doNotAdd = false;
 		
 		// Choose number of syllables to create
 		var sylToMake = 0;
@@ -155,71 +165,99 @@ function genWords(struct,quant,minsyl,maxsyl,c,v,i,m,f) {
 			}
 		} // j loop
 		
-		// TODO: check against list of forbidden clusters
+		// Check against list of forbidden clusters		
+		for (m=0;m<arrDisallow.length;m++) {
+			if (newWord.includes(arrDisallow[m])) {
+				//console.log("Disallowed combination found: "+arrDisallow[m]+
+				//	" in word: "+newWord);
+				doNotAdd = true;
+			}	
+		} // m loop
 		
-		// TODO: the nested conditionals below include repetition
 		// Check for word uniqueness, if user opts in
-		if (document.getElementById("noduplicates").checked) {
-			//console.log("No duplicates allowed");
-			// Check if generated word is already in output
-			// TODO: improve word boundary detection (currently not foolproof)
-			if (output.includes("\n"+newWord)||output.includes("\n"+newWord)||
-				output.includes("\t"+newWord)) { 
-				//console.log("Duplicate word found: "+newWord+" in "+output);
-				// If duplicate found, do not add to output and run loop again
-				// With small letter lists and many words to generate, this could
-				//		lead to an infinite loop - increment counter to track this
-				infLoopCounter++;
-				// Check if high number of duplicates found
-				if (infLoopCounter<10000) {
-					x--;
-				} else {
-					// Return no output (will lead to error message)
-					//console.log("infLoopCounter: "+infLoopCounter);
-					return "";
-				}
+		// Check if generated word is already in output
+		// TODO: improve word boundary detection (currently not foolproof)
+		if ( ( document.getElementById("noduplicates").checked && 
+			( output.includes("\n"+newWord) || output.includes("\n"+newWord) ||
+			output.includes("\t"+newWord) ) ) || doNotAdd) { 
+			
+			//console.log("Duplicate word found: "+newWord+" in : \n"+output);
+			
+			// If duplicate found, do not add to output and run loop again
+			// With small letter lists and many words to generate, this could
+			//		lead to an infinite loop - increment counter to track this
+			infLoopCounter++;
+			// Check if high number of duplicates found
+			if (infLoopCounter<1000) {
+				x--;
 			} else {
-				console.log("No duplicates found");
-				// Add to output with delimiter after each word, unless after last word
-				if (x<(quant-1)) {
-					if (document.forms["mainForm"].delimiter.value == "newline") {
-						output += newWord+"\n";
-					} else if (document.forms["mainForm"].delimiter.value == "comma") {
-						output += newWord+",";
-					} else if (document.forms["mainForm"].delimiter.value == "tab") {
-						output += newWord+"\t";
-					} else if (document.forms["mainForm"].delimiter.value == "custom") {
-						var customDelim = document.forms["mainForm"].customDelimiter.value;
-						output += newWord+customDelim;
-					}
-				} else {
-					output += newWord
-				}
+				// Return no output (will lead to error message)
+				return "###";
 			}
+			
 		} else {
-			// If user allows duplicates, add to output without further checks
-			//console.log("Duplicates allowed");
-			// Add to output with delimiter after each word, unless after last word
-			if (x<(quant-1)) {
-				if (document.forms["mainForm"].delimiter.value == "newline") {
-					output += newWord+"\n";
-				} else if (document.forms["mainForm"].delimiter.value == "comma") {
-					output += newWord+",";
-				} else if (document.forms["mainForm"].delimiter.value == "tab") {
-					output += newWord+"\t";
-				} else if (document.forms["mainForm"].delimiter.value == "custom") {
-					var customDelim = document.forms["mainForm"].customDelimiter.value;
-					output += newWord+customDelim;
-				}
-			} else {
-				output += newWord
-			}
+			
+			// Add to output with delimiter after each word, not after last word
+			output += addDelimiter(x,quant,newWord);
 		}
-
+	
 	} // x loop (used to be i loop until 'i' was used for the category 'I')
 	
 	return output;
 	
+}
+
+/////////////////////////////////
+
+/*
+*	Adds word delimiter to generated word
+*		'in' is the word to be 
+*		'q' is the number of words to generate - delimiter isn't added after the last word
+*		'curr' is the number of the current word being generated
+*/
+function addDelimiter(curr,q,inWord) {
+
+	//console.log("addDelimiter running on: "+inWord);
+	var out = "";
+	
+	if (curr<(q-1)) {
+		switch (document.forms["mainForm"].delimiter.value) {
+			case "newLine":
+				out = inWord+"\n";
+				break;
+			case "comma":
+				out = inWord+",";
+				break;
+			case "tab":
+				out = inWord+"\t";
+				break;
+			case "custom":
+				var customDelim = document.forms["mainForm"].customDelimiter.value;
+				out = inWord+customDelim;
+				break;
+			default:
+				out = inWord+"\n";
+				break;
+		}
+	} else {
+		out = inWord;
+	}
+	
+	return out;
+}
+
+/////////////////////////////////
+
+/*
+*	
+*/
+
+function checkForMatches (toCheck,toCheckFor) {
+
+	var out = "";
+	
+	return out;
+
 }
 
 /////////////////////////////////
@@ -232,7 +270,7 @@ function example(lang) {
 	document.forms["mainForm"].wordsNum.value = "15";
 	document.forms["mainForm"].minSyl.value = "1"; 
 	document.forms["mainForm"].maxSyl.value = "3"; 
-	console.log("Example lang chosen: "+lang);
+	//console.log("Example lang chosen: "+lang);
 	switch (lang) {
 		case "jp":
 			document.forms["mainForm"].inC.value = 'k,s,t,n,h,w,r,y,';
@@ -241,6 +279,7 @@ function example(lang) {
 			document.forms["mainForm"].inM.value = '';
 			document.forms["mainForm"].inF.value = 'n,';
 			document.forms["mainForm"].struct.value = "CVF"; 
+			document.forms["mainForm"].restrictedLetters.value = "wi,we,wu,yi,ye"; 
 			break;
 		case "tokipona":
 			document.forms["mainForm"].inC.value = 'p,t,k,s,m,n,l,j,w,';
@@ -248,7 +287,8 @@ function example(lang) {
 			document.forms["mainForm"].inI.value = '';
 			document.forms["mainForm"].inM.value = '';
 			document.forms["mainForm"].inF.value = 'n,m,';
-			document.forms["mainForm"].struct.value = "CVF"; 
+			document.forms["mainForm"].struct.value = "CVF";
+			document.forms["mainForm"].restrictedLetters.value = "mm,nn"; 
 			break;
 		default:
 			break;

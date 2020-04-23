@@ -47,7 +47,7 @@
 		.label {
 			padding: 0px 5px;
 		}
-		#letter-label, #structure-label, #output-label {
+		#letter-label, #structure-label, #output-label, #restrict-label {
 			font-weight: bold;
 		}
 		#structure {
@@ -62,6 +62,9 @@
 		}
 		#struct-area {
 			width: 20%;
+		}
+		#restrict-area {
+			width: 50%;
 		}
 		.nowrap {
    			white-space: nowrap;
@@ -177,6 +180,12 @@
 					</span>
 					<input type="checkbox" id="noduplicates" class="checkmark" checked>
 				</span>
+				<p>
+					<span class="label" id="param-label">
+						Letter combinations to exclude:</span>
+					<textarea rows="1" name="restrictedLetters" id="restrict-area">
+					</textarea>
+				</p>
 			</p>
 		</div>
 		<p><!--Action buttons-->

@@ -20,6 +20,7 @@ The user also specifies:
 * whether the syllable boundaries should be delineated, and whether with a hyphen, or a user-provided option
 * what delimiter to use for the output list: new line, comma, tab, or a user-provided option
 * whether to make sure generated words are unique within the list (not repeated)
+* which combinations of letters to exclude from generated words
 
 To run the generator, click **Generate words**.
 
@@ -46,10 +47,11 @@ Try the related [phoneme invetory generator](https://github.com/aaa2016/phoneme-
 ## Features yet to be implemented<a name="features"></a>
 
 * Supporting optional letters, eg. **(C)V(C)** or **CV(V)**, or supporting multiple syllable structures (however, note the [workaround](#optionals) above)
-* Supporting phonotactic constraints (ie. combinations not allowed)
 * Automated adjustment of how often each letter from a list is used, rather than all equal frequency (however, note the [workaround](#frequencies) above)
 * Automated adjustment of how often numbers of syllables occur (eg. 1 more often than 2 or 3)
 * Sound change applicator on words after they have been generated
+* Bug fix: check for duplicate words does not handle word boundaries in a foolproof way
+* Bug fix: not all letter combinations excluded if syllables are splid with a delimiter
 
 ## Examples<a name="examples"></a>
 
