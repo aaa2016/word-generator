@@ -288,7 +288,7 @@ function example(lang) {
 			document.forms["mainForm"].inM.value = '';
 			document.forms["mainForm"].inF.value = 'n,m,';
 			document.forms["mainForm"].struct.value = "CVF";
-			document.forms["mainForm"].restrictedLetters.value = "mm,nn"; 
+			document.forms["mainForm"].restrictedLetters.value = "mm,nn,mn,nm,ji,wu,wo,ti"; 
 			break;
 		default:
 			break;
