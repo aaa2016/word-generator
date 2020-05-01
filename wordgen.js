@@ -192,7 +192,7 @@ function genWords(struct,quant,minsyl,maxsyl,c,v,i,m,f) {
 				x--;
 			} else {
 				// Return no output (will lead to error message)
-				return "###";
+				return "";
 			}
 			
 		} else {
@@ -279,7 +279,11 @@ function example(lang) {
 			document.forms["mainForm"].inM.value = '';
 			document.forms["mainForm"].inF.value = 'n,';
 			document.forms["mainForm"].struct.value = "CVF"; 
-			document.forms["mainForm"].restrictedLetters.value = "wi,we,wu,yi,ye"; 
+			document.forms["mainForm"].restrictedLetters.value = "wi,we,wu,yi,ye";
+			document.forms["mainForm"].maxSyl.value = "3";
+			document.forms["mainForm"].customSylDelimiter.value = "";
+			document.getElementById("hyphenate").checked = false;
+			document.forms["mainForm"].sylDelimiter.value = "hyphen";  
 			break;
 		case "tokipona":
 			document.forms["mainForm"].inC.value = 'p,t,k,s,m,n,l,j,w,';
@@ -288,7 +292,12 @@ function example(lang) {
 			document.forms["mainForm"].inM.value = '';
 			document.forms["mainForm"].inF.value = 'n,m,';
 			document.forms["mainForm"].struct.value = "CVF";
-			document.forms["mainForm"].restrictedLetters.value = "mm,nn,mn,nm,ji,wu,wo,ti"; 
+			document.forms["mainForm"].restrictedLetters.value =
+				"mm,nn,mn,nm,ji,wu,wo,ti"; 
+			document.forms["mainForm"].maxSyl.value = "3";
+			document.forms["mainForm"].customSylDelimiter.value = "";
+			document.getElementById("hyphenate").checked = false;
+			document.forms["mainForm"].sylDelimiter.value = "hyphen"; 
 			break;
 		case "c":
 			document.forms["mainForm"].inC.value = '';
@@ -300,7 +309,8 @@ w,r,l,j,w,r,l,j,pf,ps,pc,ph,tf,ts,tc,th,kf,ks,kc,kh,pr,pl,tr,tl,kr,\
 kl,,,,,';
 			document.forms["mainForm"].inM.value = '';
 			document.forms["mainForm"].inF.value = 'p,t,k,p,t,k,p,t,k,p,t,k,p,t,k,p,t,k,\
-p,t,k,p,t,k,f,s,c,h,f,s,c,h,f,s,c,h,f,s,c,h,m,n,ŋ,m,n,ŋ,w,r,l,j,w,r,l,j,,,,,';
+p,t,k,p,t,k,f,s,c,h,f,s,c,h,f,s,c,h,f,s,c,h,m,n,ŋ,m,n,ŋ,w,r,l,j,w,r,l,j,\
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,';
 			document.forms["mainForm"].struct.value = "IVF";
 			document.forms["mainForm"].restrictedLetters.value =
 				"ij,ji,uw,wu,ae,ea,ie,ei,ue,eu";
