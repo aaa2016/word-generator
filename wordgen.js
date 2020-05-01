@@ -290,6 +290,25 @@ function example(lang) {
 			document.forms["mainForm"].struct.value = "CVF";
 			document.forms["mainForm"].restrictedLetters.value = "mm,nn,mn,nm,ji,wu,wo,ti"; 
 			break;
+		case "c":
+			document.forms["mainForm"].inC.value = '';
+			document.forms["mainForm"].inV.value = 'a,a,a,a,a,a,a,a,aa,aa,i,u,i,u,i,u,\
+i,u,ii,uu';
+			document.forms["mainForm"].inI.value = 'p,t,k,p,t,k,p,t,k,p,t,k,p,t,k,p,t,\
+k,p,t,k,p,t,k,b,d,g,b,d,g,f,s,c,h,f,s,c,h,f,s,c,h,f,s,c,h,m,n,ŋ,m,n,ŋ,\
+w,r,l,j,w,r,l,j,pf,ps,pc,ph,tf,ts,tc,th,kf,ks,kc,kh,pr,pl,tr,tl,kr,\
+kl,,,,,';
+			document.forms["mainForm"].inM.value = '';
+			document.forms["mainForm"].inF.value = 'p,t,k,p,t,k,p,t,k,p,t,k,p,t,k,p,t,k,\
+p,t,k,p,t,k,f,s,c,h,f,s,c,h,f,s,c,h,f,s,c,h,m,n,ŋ,m,n,ŋ,w,r,l,j,w,r,l,j,,,,,';
+			document.forms["mainForm"].struct.value = "IVF";
+			document.forms["mainForm"].restrictedLetters.value =
+				"ij,ji,uw,wu,ae,ea,ie,ei,ue,eu";
+			document.forms["mainForm"].maxSyl.value = "2";
+			document.forms["mainForm"].customSylDelimiter.value = "e";
+			document.getElementById("hyphenate").checked = true;
+			document.forms["mainForm"].sylDelimiter.value = "custom"; 
+			break;
 		default:
 			break;
 	}
