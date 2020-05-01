@@ -14,7 +14,17 @@
 		h1, form {text-align: center;}
 		a {text-decoration: none;}
 		.button {
- 			 background-color: #555555;
+ 			 background-color: #444444;
+ 			 border: none;
+ 			 color: white;
+ 			 padding: 10px 15px;
+ 			 text-align: center;
+ 			 text-decoration: none;
+ 			 display: inline-block;
+ 			 border-radius: 4px;
+ 		}
+ 		.example-button {
+ 			 background-color: #777777;
  			 border: none;
  			 color: white;
  			 padding: 5px 10px;
@@ -35,7 +45,7 @@
 			text-align: center;
 		}
 		input[type=text] {
-			width: 20px;
+			width: 30px;
   			border: 2px solid #555555;
   			border-radius: 4px;
   			padding: 5px 10px;
@@ -189,15 +199,15 @@
 			</p>
 		</div>
 		<p><!--Action buttons-->
-			<input type=button class="button" value="Generate words" 
+			<input type=button class="button" value="GENERATE WORDS" 
 				onClick="generate()"/>
-			<input type=button class="button" value="Try example (Toki Pona)" 
+			<input type=button class="example-button" value="Try example (Toki Pona)" 
 				onClick="example('tokipona')"/>
-			<input type=button class="button" value="Try example (Japanese)" 
+			<input type=button class="example-button" value="Try example (Japanese)" 
 				onClick="example('jp')"/>
-			<input type=button class="button" value="Try example (Project C)" 
+			<input type=button class="example-button" value="Try example (Project C)" 
 				onClick="example('c')"/>
-			<input type=button class="button" value="Reset" onClick="reset()"/>
+			<input type=button class="example-button" value="Reset" onClick="reset()"/>
 			&bull;
 			<a href="https://github.com/aaa2016/word-generator" target="_blank">Help</a>
 		</p>
