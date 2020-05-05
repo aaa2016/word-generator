@@ -139,7 +139,6 @@ function genWords(struct,quant,minsyl,maxsyl,c,v,i,m,f) {
 						break;
 					case "M": // Pick random V from array
 						rand = m[Math.floor(Math.random() * m.length)];
-						console.log(m);
 						break;
 					case "F": // Pick random V from array
 						rand = f[Math.floor(Math.random() * f.length)];
@@ -304,21 +303,23 @@ function example(lang) {
 			document.forms["mainForm"].inC.value = '';
 			document.forms["mainForm"].inV.value = 'a,a,a,a,a,a,a,a,aa,aa,i,u,i,u,i,u,\
 i,u,ii,uu';
-			document.forms["mainForm"].inI.value = 'p,t,k,p,t,k,p,t,k,p,t,k,p,t,k,p,t,\
-k,p,t,k,p,t,k,b,d,g,b,d,g,f,s,c,h,f,s,c,h,f,s,c,h,f,s,c,h,m,n,ŋ,m,n,ŋ,\
-w,r,l,j,w,r,l,j,pf,ps,pc,ph,tf,ts,tc,th,kf,ks,kc,kh,pr,pl,tr,tl,kr,\
-kl,,,,,';
-			document.forms["mainForm"].inM.value = '';
+			document.forms["mainForm"].inI.value = 'p,t,k,p,t,k,p,t,k,p,t,k,b,d,g,\
+f,s,c,h,f,s,c,h,m,n,ŋ,w,r,l,j,,,,,';
+			document.forms["mainForm"].inM.value = 'p,t,k,p,t,k,p,t,k,p,t,k,p,t,k,p,t,k,\
+p,t,k,p,t,k,p,t,k,p,t,k,p,t,k,p,t,k,p,t,k,p,t,k,p,t,k,p,t,k,b,d,g,b,d,g,b,d,g,b,d,g,f,s,\
+c,h,f,s,c,h,f,s,c,h,f,s,c,h,f,s,c,h,f,s,c,h,f,s,c,h,f,s,c,h,m,n,ŋ,m,n,ŋ,m,n,ŋ,m,n,ŋ,w,r,\
+l,j,w,r,l,j,w,r,l,j,w,r,l,j,pf,ps,pc,ph,tf,ts,tc,th,kf,ks,kc,kh,pr,pl,pj,pw,tr,tl,tj,tw,\
+kr,kl,kj,kw,fp,sp,cp,hp,ft,st,ct,ht,fk,sk,ck,hk,rp,lp,jp,wp,rt,lt,jt,wt,rk,lk,jk,wk,';
 			document.forms["mainForm"].inF.value = 'p,t,k,p,t,k,p,t,k,p,t,k,p,t,k,p,t,k,\
-p,t,k,p,t,k,f,s,c,h,f,s,c,h,f,s,c,h,f,s,c,h,m,n,ŋ,m,n,ŋ,w,r,l,j,w,r,l,j,\
-,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,';
-			document.forms["mainForm"].struct.value = "IVF";
+p,t,k,p,t,k,f,s,c,h,f,s,c,h,f,s,c,h,f,s,c,h,m,n,ŋ,m,n,ŋ,w,r,l,j,w,r,l,j,,,,,,,,,,,,,,,,,\
+,,,,,,,,,,,,,,,,';
+			document.forms["mainForm"].struct.value = "IVMVF";
 			document.forms["mainForm"].restrictedLetters.value =
-				"ij,ji,uw,wu,ae,ea,ie,ei,ue,eu";
-			document.forms["mainForm"].maxSyl.value = "2";
-			document.forms["mainForm"].customSylDelimiter.value = "e";
-			document.getElementById("hyphenate").checked = true;
-			document.forms["mainForm"].sylDelimiter.value = "custom"; 
+				"ij,ji,uw,wu";
+			document.forms["mainForm"].maxSyl.value = "1";
+			document.forms["mainForm"].customSylDelimiter.value = "";
+			document.getElementById("hyphenate").checked = false;
+			document.forms["mainForm"].sylDelimiter.value = "hyphen"; 
 			break;
 		default:
 			break;
