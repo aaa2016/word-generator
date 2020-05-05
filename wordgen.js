@@ -139,6 +139,7 @@ function genWords(struct,quant,minsyl,maxsyl,c,v,i,m,f) {
 						break;
 					case "M": // Pick random V from array
 						rand = m[Math.floor(Math.random() * m.length)];
+						console.log(m);
 						break;
 					case "F": // Pick random V from array
 						rand = f[Math.floor(Math.random() * f.length)];
@@ -166,13 +167,13 @@ function genWords(struct,quant,minsyl,maxsyl,c,v,i,m,f) {
 		} // j loop
 		
 		// Check against list of forbidden clusters		
-		for (m=0;m<arrDisallow.length;m++) {
-			if (newWord.includes(arrDisallow[m])) {
+		for (n=0;n<arrDisallow.length;n++) {
+			if (newWord.includes(arrDisallow[n])) {
 				//console.log("Disallowed combination found: "+arrDisallow[m]+
 				//	" in word: "+newWord);
 				doNotAdd = true;
 			}	
-		} // m loop
+		} // n loop
 		
 		// Check for word uniqueness, if user opts in
 		// Check if generated word is already in output
